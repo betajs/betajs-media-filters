@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+		<script src="../node_modules/betajs-shims/dist/betajs-shims.js"></script>		
+        <script src="../node_modules/betajs-scoped/dist/scoped.js"></script>
+        <script src="../node_modules/betajs/dist/beta-noscoped.js"></script>
+        <script src="../node_modules/betajs-browser/dist/betajs-browser-noscoped.js"></script>
+        <script src="../node_modules/betajs-flash/dist/betajs-flash-noscoped.js"></script>
+        <script src="../dist/betajs-media-noscoped.js"></script>
+	</head>
+	<body>
+		<video></video>
+		<br/>
+		<light></light>
+		<br/>
+		<sound></sound>
+		<br />
+		<button id='record-button'>Record</button>
+		<button id='stop-button'>Stop</button>
+		<br />
+		<video id="video-playback"></video>
+		<audio id="audio-playback"></audio>
+		<button id='play-button'>Play</button>
+		
+		<script>
+	        var view = BetaJS.Media.WebRTC.RecorderWrapper.create({
+	            video: $("video").get(0)
+	        });
+	        var audio;
+	        view.on("bound", function (stream) {
+	        	audio = new BetaJS.Media.WebRTC.AudioAnalyser(stream);
+	            setInterval(function () {
+	                $("light").html(view.lightLevel());
+	                $("sound").html(audio.soundLevel());
+	            }, 500);
+	        });
+	        view.bindMedia();
+	        $("#record-button").on("click", function () {
+	        	view.startRecord();
+	        });
+	        $("#stop-button").on("click", function () {
+	        	view.stopRecord();
+	        });
+	        $("#play-button").on("click", function () {
+	        	$("#video-playback").get(0).play();
+	        	$("#audio-playback").get(0).play();
+	        });
+	        view.on("data", function (video, audio) {
+	        	var videoURL = URL.createObjectURL(video);
+	        	$("#video-playback").get(0).src = videoURL;
+	        	if (audio) {
+		        	var audioURL = URL.createObjectURL(audio);
+		        	$("#audio-playback").get(0).src = audioURL;
+	        	}
+	        });
+		</script>
+	</body>
+</html>
