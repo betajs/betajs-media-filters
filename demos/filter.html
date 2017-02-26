@@ -3,12 +3,12 @@
 	<head>
 		<title>Video Filtering Demo</title>
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+		<script src="../node_modules/tracking/build/tracking-min.js"></script>
 		<script src="../node_modules/betajs-shims/dist/betajs-shims.js"></script>
 		<script src="../node_modules/betajs-scoped/dist/scoped.js"></script>
         <script src="../node_modules/betajs/dist/beta-noscoped.js"></script>
         <script src="../node_modules/betajs-browser/dist/betajs-browser-noscoped.js"></script>
 		<script src="../node_modules/betajs-media/dist/betajs-media.js"></script>
-		<script src="../vendors/tracking-min.js"></script>
         <script src="../dist/betajs-media-filter-noscoped.js"></script>
 	</head>
 	<body>
@@ -22,7 +22,18 @@
 		<br />
 		<button id='record-button'>Record</button>
 		<button id='stop-button'>Stop</button>
-		<button id='apply-filter'>Apply invert filter</button>
+        <select id="filter-selection">
+            <option value="none" name="none">Please Select One</option>
+			<option value="red" name="red">Red</option>
+			<option value="green" name="green">Green</option>
+			<option value="blue" name="blue">Blue</option>
+			<option value="blur" name="blur">Blur</option>
+			<option value="invert" name="invert">Invert</option>
+			<option value="grayscale" name="grayscale">Grayscale</option>
+			<option value="sketch" name="sketch">Sketch</option>
+			<option value="face" name="face">Face</option>
+			<option value="eye" name="eye">Eye</option>
+        </select>
         <button id='stop-filter'>Stop filter</button>
 		<br />
 		<video id="video-playback"></video>
@@ -54,9 +65,13 @@
 	        	$("#video-playback").get(0).play();
 	        	$("#audio-playback").get(0).play();
 	        });
-            $("#apply-filter").on("click", function () {
-              	BetaJS.MediaFilter.RecorderFilter.applyFilter('red', view);
+
+	        $("#filter-selection").on("change", function (ev) {
+			  	ev.preventDefault();
+              	BetaJS.MediaFilter.RecorderFilter.destroyFilter(view);
+              	BetaJS.MediaFilter.RecorderFilter.applyFilter(this.value, view);
             });
+
             $("#stop-filter").on("click", function () {
               	BetaJS.MediaFilter.RecorderFilter.destroyFilter(view);
             });
