@@ -1,9 +1,9 @@
-# betajs-media 0.0.44
-[![Code Climate](https://codeclimate.com/github/betajs/betajs-media/badges/gpa.svg)](https://codeclimate.com/github/betajs/betajs-media)
-[![NPM](https://img.shields.io/npm/v/betajs-media.svg?style=flat)](https://www.npmjs.com/package/betajs-media)
-[![Gitter Chat](https://badges.gitter.im/betajs/betajs-media.svg)](https://gitter.im/betajs/betajs-media)
+# betajs-media-filters 0.0.01
+[![Code Climate](https://codeclimate.com/github/betajs/betajs-media-filters/badges/gpa.svg)](https://codeclimate.com/github/betajs/betajs-media-filters)
+[![NPM](https://img.shields.io/npm/v/betajs-media-filters.svg?style=flat)](https://www.npmjs.com/package/betajs-media-filters)
+[![Gitter Chat](https://badges.gitter.im/betajs/betajs-media-filters.svg)](https://gitter.im/betajs/betajs-media-filters)
 
-BetaJS-Media is a JavaScript media framework
+BetaJS-Media-Filters allow to add filters to WebRTC video using latest Chrome and FireFox browsers
 
 
 
@@ -22,14 +22,13 @@ You can use the library in the browser and compile it as well.
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="betajs/dist/betajs.min.js"></script>
 	<script src="betajs-browser/dist/betajs-browser.min.js"></script>
-	<script src="betajs-flash/dist/betajs-flash.min.js"></script>
 	<script src="betajs-media/dist/betajs-media.min.js"></script>
 ``` 
 
 #### Compile
 
 ```javascript
-	git clone https://github.com/betajs/betajs-media-filter.git
+	git clone https://github.com/betajs/betajs-media-filters.git
 	npm install
 	grunt
 ```
@@ -73,40 +72,34 @@ You can use the library in the browser and compile it as well.
 | Resource   | URL |
 | :--------- | --: |
 | Homepage   | [http://betajs.com](http://betajs.com) |
-| Git        | [git://github.com/betajs/betajs-media.git](git://github.com/betajs/betajs-media.git) |
-| Repository | [https://github.com/betajs/betajs-media](https://github.com/betajs/betajs-media) |
+| Git        | [git://github.com/betajs/betajs-media-filters.git](git://github.com/betajs/betajs-media-filters.git) |
+| Repository | [https://github.com/betajs/betajs-media-filters](https://github.com/betajs/betajs-media-filters) |
 | Blog       | [http://blog.betajs.com](http://blog.betajs.com) | 
 | Twitter    | [http://twitter.com/thebetajs](http://twitter.com/thebetajs) | 
-| Gitter     | [https://gitter.im/betajs/betajs-media](https://gitter.im/betajs/betajs-media) | 
+| Gitter     | [https://gitter.im/betajs/betajs-media-filters](https://gitter.im/betajs/betajs-media-filters) | 
 
 
 
 ## Compatability
 | Target | Versions |
 | :----- | -------: |
-| Firefox | 32 - Latest |
-| Chrome | 18 - Latest |
-| Safari | 4 - Latest |
-| Opera | 25 - Latest |
-| Internet Explorer | 8 - Latest |
-| Edge | 12 - Latest |
-| iOS | 4.0 - Latest |
-| Android | 2.3 - Latest |
+| Firefox | 43 - Latest |
+| Chrome | 52 - Latest |
 
 
 ## CDN
 | Resource | URL |
 | :----- | -------: |
-| betajs-media.js | [http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media.js](http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media.js) |
-| betajs-media.min.js | [http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media.min.js](http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media.min.js) |
-| betajs-media-noscoped.js | [http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-noscoped.js](http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-noscoped.js) |
-| betajs-media-noscoped.min.js | [http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-noscoped.min.js](http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-noscoped.min.js) |
+| betajs-media-filters.js | [http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-filters.js](http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-filters.js) |
+| betajs-media-filters.min.js | [http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-filters.min.js](http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-filters.min.js) |
+| betajs-media-filters-noscoped.js | [http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-filters-noscoped.js](http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-filters-noscoped.js) |
+| betajs-media-filters-noscoped.min.js | [http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-filters-noscoped.min.js](http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-filters-noscoped.min.js) |
 
 
 ## Unit Tests
 | Resource | URL |
 | :----- | -------: |
-| Test Suite | [Run](http://rawgit.com/betajs/betajs-media/master/tests/tests.html) |
+| Test Suite | [Run](http://rawgit.com/betajs/betajs-media-filters/master/tests/tests.html) |
 
 
 ## Dependencies
@@ -114,7 +107,7 @@ You can use the library in the browser and compile it as well.
 | :----- | -------: |
 | betajs | [Open](https://github.com/betajs/betajs) |
 | betajs-browser | [Open](https://github.com/betajs/betajs-browser) |
-| betajs-flash | [Open](https://github.com/betajs/betajs-flash) |
+| tracking | [Open](^1.1.3) |
 
 
 ## Weak Dependencies
@@ -140,6 +133,7 @@ This software may include modified and unmodified portions of:
 - TypedArray, From microphone to .WAV with: getUserMedia and Web Audio, (c) Thibault Imbert
 - Media Stream Recorder, https://github.com/streamproc/MediaStreamRecorder
 - Whammy Recorder, https://github.com/antimatter15/whammy
+- TrackingJS, developed by Eduardo A. Lundgren Melo, https://github.com/eduardolundgren/tracking.js
 
 
 

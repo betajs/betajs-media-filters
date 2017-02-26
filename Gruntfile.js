@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 
 	var pkg = grunt.file.readJSON('package.json');
 	var gruntHelper = require('betajs-compile');
-	var dist = 'betajs-media-filter';
+	var dist = 'betajs-media-filters';
 
 	gruntHelper.init(pkg, grunt)
 	
@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 
     /* Testing */
     .browserqunitTask(null, "tests/tests.html", true)
-    .closureTask(null, [require.resolve("betajs-scoped"), require.resolve("betajs"), require.resolve("betajs-browser"), require.resolve("betajs-flash"), "./dist/betajs-media-filter-noscoped.js"], null, { jquery: true })
+    .closureTask(null, [require.resolve("betajs-scoped"), require.resolve("betajs"), require.resolve("betajs-browser"), require.resolve("betajs-flash"), "./dist/betajs-media-filters-noscoped.js"], null, { jquery: true })
     .browserstackTask(null, 'tests/browserstack.html', {desktop: true, mobile: true})
     .lintTask(null, ['./src/**/*.js', './dist/' + dist + '-noscoped.js', './dist/' + dist + '.js', './Gruntfile.js', './tests/**/*.js'])
     

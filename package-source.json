@@ -1,7 +1,7 @@
 {
-	"name": "betajs-media",
-	"version": "0.0.44",
-	"description": "BetaJS-Media is a JavaScript media framework",
+	"name": "betajs-media-filters",
+	"version": "0.0.01",
+	"description": "BetaJS-Media-Filters allow to add filters to WebRTC video using latest Chrome and FireFox browsers",
 	"contributors": ["Ziggeo", "Oliver Friedmann"],
 	"devDependencies": {
     	"lodash": "",
@@ -23,13 +23,12 @@
 	    "betajs-compile": "~0.0.28",
 		"betajs-shims": "~0.0.12",
 	    "betajs": "~1.0.96",
-	    "betajs-browser": "~1.0.61",
-	    "betajs-flash": "~0.0.18"
+	    "betajs-browser": "~1.0.61"
 	},
-	"main": "dist/betajs-media.js",
+	"main": "dist/betajs-media-filters.js",
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/betajs/betajs-media.git"
+		"url": "git://github.com/betajs/betajs-media-filters.git"
 	},
 	"meta": {
 		"sponsors": ["Ziggeo", "Browserstack"],
@@ -45,7 +44,8 @@
 		"credits": [
 			"TypedArray, From microphone to .WAV with: getUserMedia and Web Audio, (c) Thibault Imbert",
 			"Media Stream Recorder, https://github.com/streamproc/MediaStreamRecorder",
-			"Whammy Recorder, https://github.com/antimatter15/whammy"
+			"Whammy Recorder, https://github.com/antimatter15/whammy",
+			"TrackingJS, developed by Eduardo A. Lundgren Melo, https://github.com/eduardolundgren/tracking.js"
 		],
 		"weakDependencies": {
 			"betajs-scoped": "https://github.com/betajs/betajs-scoped",
@@ -54,26 +54,20 @@
 		"dependencies": {
 			"betajs": "https://github.com/betajs/betajs",
 			"betajs-browser": "https://github.com/betajs/betajs-browser",
-			"betajs-flash": "https://github.com/betajs/betajs-flash"
+			"tracking": "^1.1.3"
 		},
 		"compatability": {
-		      "Firefox": "32 - Latest",
-		      "Chrome": "18 - Latest",
-		      "Safari": "4 - Latest",
-		      "Opera": "25 - Latest",
-		      "Internet Explorer": "8 - Latest",
-			  "Edge": "12 - Latest",
-			  "iOS": "4.0 - Latest",
-			  "Android": "2.3 - Latest"
+		      "Firefox": "43 - Latest",
+		      "Chrome": "52 - Latest"
 		},
 		"tests": {
-			"Test Suite": "http://rawgit.com/betajs/betajs-media/master/tests/tests.html"
+			"Test Suite": "http://rawgit.com/betajs/betajs-media-filters/master/tests/tests.html"
 		},
 		"cdn": {
-			"betajs-media.js": "http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media.js",
-			"betajs-media.min.js": "http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media.min.js",
-			"betajs-media-noscoped.js": "http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-noscoped.js",
-			"betajs-media-noscoped.min.js": "http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-noscoped.min.js"
+			"betajs-media-filters.js": "http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-filters.js",
+			"betajs-media-filters.min.js": "http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-filters.min.js",
+			"betajs-media-filters-noscoped.js": "http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-filters-noscoped.js",
+			"betajs-media-filters-noscoped.min.js": "http://cdn.rawgit.com/betajs/betajs-media/master/dist/betajs-media-filters-noscoped.min.js"
 		}
 	}
 }
