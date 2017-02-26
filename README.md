@@ -1,13 +1,17 @@
 # betajs-media 0.0.44
 [![Code Climate](https://codeclimate.com/github/betajs/betajs-media/badges/gpa.svg)](https://codeclimate.com/github/betajs/betajs-media)
 [![NPM](https://img.shields.io/npm/v/betajs-media.svg?style=flat)](https://www.npmjs.com/package/betajs-media)
-
+[![Gitter Chat](https://badges.gitter.im/betajs/betajs-media.svg)](https://gitter.im/betajs/betajs-media)
 
 BetaJS-Media is a JavaScript media framework
 
 
 
 ## Getting Started
+
+
+This repository is based on betajs open-source project also use HTMLCanvasElement.captureStream()[https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/captureStream]
+which is currently on `Editor's Draft` status.
 
 
 You can use the library in the browser and compile it as well.
@@ -25,7 +29,7 @@ You can use the library in the browser and compile it as well.
 #### Compile
 
 ```javascript
-	git clone https://github.com/betajs/betajs-media.git
+	git clone https://github.com/betajs/betajs-media-filter.git
 	npm install
 	grunt
 ```
@@ -73,7 +77,7 @@ You can use the library in the browser and compile it as well.
 | Repository | [https://github.com/betajs/betajs-media](https://github.com/betajs/betajs-media) |
 | Blog       | [http://blog.betajs.com](http://blog.betajs.com) | 
 | Twitter    | [http://twitter.com/thebetajs](http://twitter.com/thebetajs) | 
- 
+| Gitter     | [https://gitter.im/betajs/betajs-media](https://gitter.im/betajs/betajs-media) | 
 
 
 

@@ -1,3 +1,7 @@
+This repository is based on betajs open-source project also use HTMLCanvasElement.captureStream()[https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/captureStream]
+which is currently on `Editor's Draft` status.
+
+
 You can use the library in the browser and compile it as well.
 
 #### Browser
@@ -13,7 +17,7 @@ You can use the library in the browser and compile it as well.
 #### Compile
 
 ```javascript
-	git clone https://github.com/betajs/betajs-media.git
+	git clone https://github.com/betajs/betajs-media-filter.git
 	npm install
 	grunt
 ```
