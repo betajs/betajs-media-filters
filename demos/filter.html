@@ -23,7 +23,7 @@
 		<button id='record-button'>Record</button>
 		<button id='stop-button'>Stop</button>
         <select id="filter-selection">
-            <option value="none" name="none">Please Select One</option>
+            <option value="none">Please Select One</option>
 			<option value="red" name="red">Red</option>
 			<option value="green" name="green">Green</option>
 			<option value="blue" name="blue">Blue</option>
@@ -42,11 +42,9 @@
 		
 		<script>
             var canvas = document.getElementById('canvas');
-            var view = BetaJS.Media.WebRTC.RecorderWrapper.create({
-            //var view = BetaJS.MediaFilters.StreamsFilter.create({
+            var view = BetaJS.MediaFilters.StreamsFilter.create({
 	          video: $("video").get(0)
 	        });
-
             var instance = new BetaJS.MediaFilters.StreamsFilter(view);
 	        var audio;
 	        view.on("bound", function (stream) {
@@ -73,6 +71,9 @@
 	        $("#filter-selection").on("change", function (ev) {
 			  	ev.preventDefault();
               	BetaJS.MediaFilters.FilterManager.destroyFilter(view);
+
+              	if(ev.value == 'none') return false;
+
               	BetaJS.MediaFilters.FilterManager.applyFilter(this.value, view);
             });
 
