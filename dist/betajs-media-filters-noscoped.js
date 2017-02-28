@@ -10,7 +10,6 @@ Scoped.binding('module', 'global:BetaJS.MediaFilters');
 Scoped.binding('media', 'global:BetaJS.Media');
 Scoped.binding('base', 'global:BetaJS');
 Scoped.binding('browser', 'global:BetaJS.Browser');
-Scoped.binding('flash', 'global:BetaJS.Flash');
 Scoped.binding('jquery', 'global:jQuery');
 Scoped.define("module:", function () {
 	return {

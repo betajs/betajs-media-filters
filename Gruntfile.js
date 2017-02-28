@@ -12,7 +12,6 @@ module.exports = function(grunt) {
 		"media": "global:BetaJS.Media",
 		"base": "global:BetaJS",
 		"browser": "global:BetaJS.Browser",
-		"flash": "global:BetaJS.Flash",
 		"jquery": "global:jQuery"
     }, {
     	"base:version": pkg.devDependencies.betajs,
@@ -26,7 +25,7 @@ module.exports = function(grunt) {
 
     /* Testing */
     .browserqunitTask(null, "tests/tests.html", true)
-    .closureTask(null, [require.resolve("betajs-scoped"), require.resolve("betajs"), require.resolve("betajs-browser"), require.resolve("betajs-flash"), "./dist/betajs-media-filters-noscoped.js"], null, { jquery: true })
+    .closureTask(null, [require.resolve("betajs-scoped"), require.resolve("betajs"), require.resolve("betajs-browser"), "./dist/betajs-media-filters-noscoped.js"], null, { jquery: true })
     .browserstackTask(null, 'tests/browserstack.html', {desktop: true, mobile: true})
     .lintTask(null, ['./src/**/*.js', './dist/' + dist + '-noscoped.js', './dist/' + dist + '.js', './Gruntfile.js', './tests/**/*.js'])
     

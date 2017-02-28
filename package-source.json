@@ -26,6 +26,7 @@
 	    "betajs-scoped": "~0.0.13",
 	    "betajs-compile": "~0.0.28",
 		"betajs-shims": "~0.0.12",
+		"betajs-media": "~0.0.45",
 	    "betajs": "~1.0.96",
 	    "betajs-browser": "~1.0.61"
 	},
