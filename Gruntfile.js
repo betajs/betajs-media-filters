@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 	
     /* Compilation */    
 	.scopedclosurerevisionTask(null, "src/**/*.js", "dist/" + dist + "-noscoped.js", {
-		"module":"global:BetaJS.MediaFilter",
+		"module":"global:BetaJS.MediaFilters",
 		"media": "global:BetaJS.Media",
 		"base": "global:BetaJS",
 		"browser": "global:BetaJS.Browser",

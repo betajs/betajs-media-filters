@@ -1,4 +1,4 @@
-# betajs-media-filters 0.0.01
+# betajs-media-filters 0.0.02
 [![Code Climate](https://codeclimate.com/github/betajs/betajs-media-filters/badges/gpa.svg)](https://codeclimate.com/github/betajs/betajs-media-filters)
 [![NPM](https://img.shields.io/npm/v/betajs-media-filters.svg?style=flat)](https://www.npmjs.com/package/betajs-media-filters)
 [![Gitter Chat](https://badges.gitter.im/betajs/betajs-media-filters.svg)](https://gitter.im/betajs/betajs-media-filters)

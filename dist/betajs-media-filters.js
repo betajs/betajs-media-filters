@@ -1,5 +1,5 @@
 /*!
-betajs-media-filters - v0.0.01 - 2017-02-27
+betajs-media-filters - v0.0.02 - 2017-02-27
 Copyright (c) Ziggeo,Oliver Friedmann
 Apache-2.0 Software License.
 */
@@ -1004,14 +1004,14 @@ Public.exports();
 	return Public;
 }).call(this);
 /*!
-betajs-media-filters - v0.0.01 - 2017-02-27
+betajs-media-filters - v0.0.02 - 2017-02-27
 Copyright (c) Ziggeo,Oliver Friedmann
 Apache-2.0 Software License.
 */
 
 (function () {
 var Scoped = this.subScope();
-Scoped.binding('module', 'global:BetaJS.MediaFilter');
+Scoped.binding('module', 'global:BetaJS.MediaFilters');
 Scoped.binding('media', 'global:BetaJS.Media');
 Scoped.binding('base', 'global:BetaJS');
 Scoped.binding('browser', 'global:BetaJS.Browser');
@@ -1020,12 +1020,40 @@ Scoped.binding('jquery', 'global:jQuery');
 Scoped.define("module:", function () {
 	return {
     "guid": "8475efdb-dd7e-402e-9f50-36c76945a692",
-    "version": "0.0.01"
+    "version": "0.0.02"
 };
 });
 Scoped.assumeVersion('base:version', '~1.0.96');
 Scoped.assumeVersion('browser:version', '~1.0.61');
 Scoped.assumeVersion('media:version', 'undefined');
+
+Scoped.define("module:FilterManager", [
+  "module:Filters",
+  "module:FilterSupport"
+], function (Filters, Support) {
+
+  return {
+
+    applyFilter: function (filterFunction, videoObj) {
+      var canvas = document.querySelector('.ba-video-' + videoObj._stream.id);
+      // Check if canvas was created, if not run function. Need destroy old canvas before
+      if(!canvas) {
+        canvas = Support.createFilterCanvas(videoObj);
+        Filters[filterFunction](videoObj, canvas);
+      }
+      return false;
+    },
+
+    destroyFilter: function (videoObj) {
+      var canvas = document.querySelector('.ba-video-' + videoObj._stream.id);
+      if(canvas) {
+        canvas.remove();
+        videoObj._video.style.display = 'block';
+      }
+    }
+  };
+});
+
 Scoped.define ("module:FilterSupport", [], function () {
   return {
 
@@ -1128,7 +1156,8 @@ Scoped.define ("module:FilterSupport", [], function () {
     }
   }
 });
-Scoped.define("module:MediaFilters", [
+
+Scoped.define("module:Filters", [
   "module:FilterSupport"
 ], function (Support, scoped) {
   return {
@@ -1211,7 +1240,6 @@ Scoped.define("module:MediaFilters", [
           // worker returns
           worker = new Worker('../vendors/face-worker.js');
           worker.addEventListener('message', function (event) {
-            console.log(event.data);
             if (event.data.length) {
               currentFaces = event.data;
             } else {
@@ -1282,93 +1310,22 @@ Scoped.define("module:MediaFilters", [
 
   }
 });
-// Credits: https://github.com/antimatter15/whammy/blob/master/whammy.js
-// Co-Credits: https://github.com/streamproc/MediaStreamRecorder/blob/master/MediaStreamRecorder-standalone.js
-Scoped.define("module:CanvasRecorder", [
-  "media:WebRTC.WhammyRecorder",
-  "media:WebRTC.Support",
-  "module:FilterSupport"
-], function (WhammyRecorder, Support, FilterSupport, scoped) {
 
-  return WhammyRecorder.extend({scoped: scoped}, function (inherited) {
-
-    return {
-
-      constructor: function (stream, options) {
-        inherited.constructor.call(this, stream, options);
-      },
-
-      start: function () {
-        if (this._started)
-          return;
-        this._started = true;
-        if (this._options.video) {
-          this._options.recordWidth = this._options.video.videoWidth || this._options.video.clientWidth;
-          this._options.recordHeight = this._options.video.videoHeight || this._options.video.clientHeight;
-        }
-        this._video = document.createElement('video');
-        this._video.width = this._options.recordWidth;
-        this._video.height = this._options.recordHeight;
-        this._stream = FilterSupport.filterCanvasControl(this._stream, 25);
-        Support.bindStreamToVideo(this._stream, this._video);
-        // this._canvas = document.createElement('canvas');
-        // this._canvas.width = this._options.recordWidth;
-        // this._canvas.height = this._options.recordHeight;
-        //      this._context = this._canvas.getContext('2d');
-        this._frames = [];
-        //this._isOnStartedDrawingNonBlankFramesInvoked = false;
-        this._lastTime = Time.now();
-        this._startTime = this._lastTime;
-        this.trigger("started");
-        Async.eventually(this._process, [], this);
-      }
-
-    };
-  }, {
-
-    supported: function () {
-      return Support.globals().webpSupport;
-    }
-
-  });
-});
-Scoped.define("module:RecorderFilter", [
+Scoped.define("module:StreamsFilter", [
   "media:WebRTC.RecorderWrapper",
-  "module:MediaFilters",
   "module:FilterSupport"
-], function (RecorderWrapper, MediaFilters, Support, scoped) {
+], function (RecorderWrapper, Support, scoped ) {
 
-  return RecorderWrapper.extend({scoped: scoped}, function(inherited) {
+ return RecorderWrapper.extend({scoped: scoped}, function() {
+   return {
 
-    return {
-      constructor: function (options) {
-        inherited.constructor.call(this, options);
-      },
+   }
+ }, {
 
-      stream: function () {
-        return this._stream;
-      }
-    }
+   getFilteredStream: function(stream, fps) {
+     Support.filterCanvasControl(stream, fps);
+   }
 
-  }, {
-
-    applyFilter: function (filterFunction, videoObj) {
-      var canvas = document.querySelector('.ba-video-' + videoObj._stream.id);
-      // Check if canvas was created, if not run function. Need destroy old canvas before
-      if(!canvas) {
-        canvas = Support.createFilterCanvas(videoObj);
-        MediaFilters[filterFunction](videoObj, canvas);
-      }
-      return false;
-    },
-
-    destroyFilter: function (videoObj) {
-      var canvas = document.querySelector('.ba-video-' + videoObj._stream.id);
-      if(canvas) {
-        canvas.remove();
-        videoObj._video.style.display = 'block';
-      }
-    }
-  }, {});
+ });
 });
 }).call(Scoped);

@@ -15,7 +15,7 @@
         "url": "https://github.com/betajs/betajs-media-filters/issues"
     },
     "name": "betajs-media-filters",
-    "version": "0.0.01",
+    "version": "0.0.02",
     "description": "BetaJS-Media-Filters allow to add filters to WebRTC video using latest Chrome and FireFox browsers",
     "contributors": [
         "Ziggeo",

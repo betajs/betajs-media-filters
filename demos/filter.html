@@ -9,7 +9,7 @@
         <script src="../node_modules/betajs/dist/beta-noscoped.js"></script>
         <script src="../node_modules/betajs-browser/dist/betajs-browser-noscoped.js"></script>
 		<script src="../node_modules/betajs-media/dist/betajs-media.js"></script>
-        <script src="../dist/betajs-media-filter-noscoped.js"></script>
+        <script src="../dist/betajs-media-filters-noscoped.js"></script>
 	</head>
 	<body>
 	<div id="video-wrapepr">
@@ -42,10 +42,12 @@
 		
 		<script>
             var canvas = document.getElementById('canvas');
-            var view = BetaJS.MediaFilter.RecorderFilter.create({
+            var view = BetaJS.Media.WebRTC.RecorderWrapper.create({
+            //var view = BetaJS.MediaFilters.StreamsFilter.create({
 	          video: $("video").get(0)
 	        });
 
+            var instance = new BetaJS.MediaFilters.StreamsFilter(view);
 	        var audio;
 	        view.on("bound", function (stream) {
 	        	audio = new BetaJS.Media.WebRTC.AudioAnalyser(stream);
@@ -54,8 +56,10 @@
 	                $("sound").html(audio.soundLevel());
 	            }, 500);
 	        });
-	        view.bindMedia();
+
+	        view.bindMedia(function(){ });
 	        $("#record-button").on("click", function () {
+              	view = instance.applyFilteredStream(view, 25);
 	        	view.startRecord();
 	        });
 	        $("#stop-button").on("click", function () {
@@ -68,12 +72,12 @@
 
 	        $("#filter-selection").on("change", function (ev) {
 			  	ev.preventDefault();
-              	BetaJS.MediaFilter.RecorderFilter.destroyFilter(view);
-              	BetaJS.MediaFilter.RecorderFilter.applyFilter(this.value, view);
+              	BetaJS.MediaFilters.FilterManager.destroyFilter(view);
+              	BetaJS.MediaFilters.FilterManager.applyFilter(this.value, view);
             });
 
             $("#stop-filter").on("click", function () {
-              	BetaJS.MediaFilter.RecorderFilter.destroyFilter(view);
+              	BetaJS.MediaFilters.FilterManager.destroyFilter(view);
             });
 	        view.on("data", function (video, audio) {
 	        	var videoURL = URL.createObjectURL(video);

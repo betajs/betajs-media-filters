@@ -1,4 +1,5 @@
-Scoped.define("module:MediaFilters", [
+
+Scoped.define("module:Filters", [
   "module:FilterSupport"
 ], function (Support, scoped) {
   return {
@@ -81,7 +82,6 @@ Scoped.define("module:MediaFilters", [
           // worker returns
           worker = new Worker('../vendors/face-worker.js');
           worker.addEventListener('message', function (event) {
-            console.log(event.data);
             if (event.data.length) {
               currentFaces = event.data;
             } else {
@@ -133,22 +133,9 @@ Scoped.define("module:MediaFilters", [
         tmpCanvas.height = canvas.height;
       }
 
+      // TODO
+      // Continue with adding filters for eye center coloring
 
-      var tracker = new tracking.ObjectTracker(['eye']);
-      tracker.stepSize(1.7);
-
-      tracking.track(videoElement, tracker, {camera: true});
-
-      tracker.on('track', function (ev) {
-        tmpCtx.clearRect(0, 0, tmpCanvas.width, tmpCanvas.height);
-
-        ev.data.forEach(function (rect) {
-          tmpCtx.strokeStyle = "#ff0dd0";
-          tmpCtx.strokeRect(rect.x, rect.y, rect.width, rect.height);
-        })
-      });
     }
-
-
   }
 });
