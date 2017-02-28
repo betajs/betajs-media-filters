@@ -14,6 +14,7 @@
 		"grunt-closure-tools": "",
 		"grunt-node-qunit": "",
 		"qunit": "",
+		"tracking": "^1.1.3",
 		"grunt-contrib-connect": "",
 		"grunt-jsdoc": "",
 		"grunt-shell": "",
