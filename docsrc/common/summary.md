@@ -1,28 +1,7 @@
-```html
+after installing npm packages run 
 
-	<video></video>
+`node node_modules/nano-media-server/server.js --staticserve .`
 
-```
+as soon as 5000 port will start running, you can check and test it on
 
-```js
-
-    var webrtc = BetaJS.Media.WebRTC.RecorderWrapper.create({
-        video: $("video").get(0)
-    });
-    
-```
-
-```html
-
-	<video autoplay loop poster="movie.png">
-		<source src="movie.mp4" type="video/mp4" />
-	</video>
-
-```
-
-```js
-
-	BetaJS.Media.Player.FlashPlayer.polyfill($("video").get(0)).success(function (video) {
-	});
-
-```
+`http://localhost:5000/static/demos/filter.html`

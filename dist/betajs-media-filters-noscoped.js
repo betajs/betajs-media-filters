@@ -1,5 +1,5 @@
 /*!
-betajs-media-filters - v0.0.02 - 2017-02-27
+betajs-media-filters - v0.0.03 - 2017-03-01
 Copyright (c) Ziggeo,Oliver Friedmann
 Apache-2.0 Software License.
 */
@@ -15,7 +15,7 @@ Scoped.binding('jquery', 'global:jQuery');
 Scoped.define("module:", function () {
 	return {
     "guid": "8475efdb-dd7e-402e-9f50-36c76945a692",
-    "version": "0.0.02"
+    "version": "0.0.03"
 };
 });
 Scoped.assumeVersion('base:version', '~1.0.96');
@@ -286,23 +286,10 @@ Scoped.define("module:Filters", [
         tmpCanvas.height = canvas.height;
       }
 
+      // TODO
+      // Continue with adding filters for eye center coloring
 
-      var tracker = new tracking.ObjectTracker(['eye']);
-      tracker.stepSize(1.7);
-
-      tracking.track(videoElement, tracker, {camera: true});
-
-      tracker.on('track', function (ev) {
-        tmpCtx.clearRect(0, 0, tmpCanvas.width, tmpCanvas.height);
-
-        ev.data.forEach(function (rect) {
-          tmpCtx.strokeStyle = "#ff0dd0";
-          tmpCtx.strokeRect(rect.x, rect.y, rect.width, rect.height);
-        })
-      });
     }
-
-
   }
 });
 
@@ -311,19 +298,18 @@ Scoped.define("module:StreamsFilter", [
   "module:FilterSupport"
 ], function (RecorderWrapper, FilterSupport, scoped) {
 
- return RecorderWrapper.extend({scoped: scoped}, function(inherited) {
-   return {
-     constructor: function (options) {
-       inherited.constructor.call(this, options);
-     },
+  return RecorderWrapper.extend({scoped: scoped}, function(inherited) {
+    return {
+      constructor: function (options) {
+        inherited.constructor.call(this, options);
+      },
 
-     applyFilteredStream: function(instance, fps) {
-       instance._stream = FilterSupport.filterCanvasControl(instance._stream, fps);
-       instance._whammyRecorder._stream = instance._stream;
-       return instance;
-     }
-   }
- });
+      applyFilteredStream: function(instance, fps) {
+        instance._stream = FilterSupport.filterCanvasControl(instance._stream, fps);
+        instance._whammyRecorder._stream = instance._stream;
+        return instance;
+      }
+    }
+  });
 });
-
 }).call(Scoped);

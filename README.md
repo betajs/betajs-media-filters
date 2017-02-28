@@ -1,7 +1,5 @@
-# betajs-media-filters 0.0.02
-[![Code Climate](https://codeclimate.com/github/betajs/betajs-media-filters/badges/gpa.svg)](https://codeclimate.com/github/betajs/betajs-media-filters)
-[![NPM](https://img.shields.io/npm/v/betajs-media-filters.svg?style=flat)](https://www.npmjs.com/package/betajs-media-filters)
-[![Gitter Chat](https://badges.gitter.im/betajs/betajs-media-filters.svg)](https://gitter.im/betajs/betajs-media-filters)
+# betajs-media-filters 0.0.03
+
 
 BetaJS-Media-Filters allow to add filters to WebRTC video using latest Chrome and FireFox browsers
 
@@ -10,8 +8,8 @@ BetaJS-Media-Filters allow to add filters to WebRTC video using latest Chrome an
 ## Getting Started
 
 
-This repository is based on betajs open-source project also use HTMLCanvasElement.captureStream()[https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/captureStream]
-which is currently on `Editor's Draft` status.
+This repository is based on betajs open-source project also use HTMLCanvasElement.captureStream()
+which is currently on [Editor's Draft](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/captureStream) status.
 
 
 You can use the library in the browser and compile it as well.
@@ -19,10 +17,14 @@ You can use the library in the browser and compile it as well.
 #### Browser
 
 ```javascript
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="betajs/dist/betajs.min.js"></script>
-	<script src="betajs-browser/dist/betajs-browser.min.js"></script>
-	<script src="betajs-media/dist/betajs-media.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="tracking/build/tracking-min.js"></script>
+    <script src="betajs-shims/dist/betajs-shims.js"></script>
+    <script src="betajs-scoped/dist/scoped.js"></script>
+    <script src="betajs/dist/beta-noscoped.js"></script>
+    <script src="betajs-browser/dist/betajs-browser-noscoped.js"></script>
+    <script src="betajs-media/dist/betajs-media.js"></script>
+    <script src="betajs-media-filters/dist/betajs-media-filters-noscoped.js"></script>
 ``` 
 
 #### Compile
@@ -38,34 +40,13 @@ You can use the library in the browser and compile it as well.
 ## Basic Usage
 
 
-```html
+after installing npm packages run 
 
-	<video></video>
+`node node_modules/nano-media-server/server.js --staticserve .`
 
-```
+as soon as 5000 port will start running, you can check and test it on
 
-```js
-
-    var webrtc = BetaJS.Media.WebRTC.RecorderWrapper.create({
-        video: $("video").get(0)
-    });
-    
-```
-
-```html
-
-	<video autoplay loop poster="movie.png">
-		<source src="movie.mp4" type="video/mp4" />
-	</video>
-
-```
-
-```js
-
-	BetaJS.Media.Player.FlashPlayer.polyfill($("video").get(0)).success(function (video) {
-	});
-
-```
+`http://localhost:5000/static/demos/filter.html`
 
 
 ## Links
@@ -76,7 +57,7 @@ You can use the library in the browser and compile it as well.
 | Repository | [https://github.com/betajs/betajs-media-filters](https://github.com/betajs/betajs-media-filters) |
 | Blog       | [http://blog.betajs.com](http://blog.betajs.com) | 
 | Twitter    | [http://twitter.com/thebetajs](http://twitter.com/thebetajs) | 
-| Gitter     | [https://gitter.im/betajs/betajs-media-filters](https://gitter.im/betajs/betajs-media-filters) | 
+ 
 
 
 
