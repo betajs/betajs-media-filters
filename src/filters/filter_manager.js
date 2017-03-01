@@ -7,7 +7,8 @@ Scoped.define("module:FilterManager", [
   return {
 
     applyFilter: function (filterFunction, videoObj) {
-      var canvas = document.querySelector('.ba-video-' + videoObj._stream.id);
+      var selector = '.ba-video-' + videoObj._stream.id.replace(/[{()}]/g, '');
+      var canvas = document.querySelector(selector);
       // Check if canvas was created, if not run function. Need destroy old canvas before
       if(!canvas) {
         canvas = Support.createFilterCanvas(videoObj);
@@ -17,11 +18,13 @@ Scoped.define("module:FilterManager", [
     },
 
     destroyFilter: function (videoObj) {
-      var canvas = document.querySelector('.ba-video-' + videoObj._stream.id);
+      var selector = '.ba-video-' + videoObj._stream.id.replace(/[{()}]/g, '');
+      var canvas = document.querySelector(selector);
       if(canvas) {
         canvas.remove();
         videoObj._video.style.display = 'block';
       }
     }
+
   };
 });

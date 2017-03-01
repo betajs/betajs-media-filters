@@ -90,11 +90,11 @@ Scoped.define ("module:FilterSupport", [], function () {
     // apply captureStream and will return new stream
     filterCanvasControl: function (stream, framesPerSecond) {
       var fps = framesPerSecond || 25;
-      var selector = '.ba-video-' + stream.id;
+      var selector = '.ba-video-' + stream.id.replace(/[{()}]/g, '');
       var canvas = document.querySelector(selector);
       if (canvas) {
         stream = canvas.captureStream(fps);
-        canvas.className = 'ba-video-' + stream.id;
+        canvas.className = 'ba-video-' + stream.id.replace(/[{()}]/g, '');
       }
 
       return stream;

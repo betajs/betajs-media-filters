@@ -43,7 +43,7 @@
 		<script>
             var canvas = document.getElementById('canvas');
             var view = BetaJS.MediaFilters.StreamsFilter.create({
-	          video: $("video").get(0)
+                video: $("video").get(0)
 	        });
             var instance = new BetaJS.MediaFilters.StreamsFilter(view);
 	        var audio;
@@ -69,7 +69,7 @@
 	        });
 
 	        $("#filter-selection").on("change", function (ev) {
-			  	ev.preventDefault();
+			  	//ev.preventDefault();
               	BetaJS.MediaFilters.FilterManager.destroyFilter(view);
 
               	if(ev.value == 'none') return false;

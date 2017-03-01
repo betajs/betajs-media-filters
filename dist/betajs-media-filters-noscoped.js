@@ -19,7 +19,7 @@ Scoped.define("module:", function () {
 });
 Scoped.assumeVersion('base:version', '~1.0.96');
 Scoped.assumeVersion('browser:version', '~1.0.61');
-Scoped.assumeVersion('media:version', 'undefined');
+Scoped.assumeVersion('media:version', '~0.0.45');
 
 Scoped.define("module:FilterManager", [
   "module:Filters",
@@ -29,7 +29,8 @@ Scoped.define("module:FilterManager", [
   return {
 
     applyFilter: function (filterFunction, videoObj) {
-      var canvas = document.querySelector('.ba-video-' + videoObj._stream.id);
+      var selector = '.ba-video-' + videoObj._stream.id.replace(/[{()}]/g, '');
+      var canvas = document.querySelector(selector);
       // Check if canvas was created, if not run function. Need destroy old canvas before
       if(!canvas) {
         canvas = Support.createFilterCanvas(videoObj);
@@ -39,12 +40,14 @@ Scoped.define("module:FilterManager", [
     },
 
     destroyFilter: function (videoObj) {
-      var canvas = document.querySelector('.ba-video-' + videoObj._stream.id);
+      var selector = '.ba-video-' + videoObj._stream.id.replace(/[{()}]/g, '');
+      var canvas = document.querySelector(selector);
       if(canvas) {
         canvas.remove();
         videoObj._video.style.display = 'block';
       }
     }
+
   };
 });
 
@@ -56,7 +59,7 @@ Scoped.define ("module:FilterSupport", [], function () {
       var videoParentNode = videoElement.parentNode;
       var videoHeight = videoElement.clientHeight;
       var videoWidth = videoElement.clientWidth;
-      var newClassName = 'ba-video-' + videoObject._stream.id;
+      var newClassName = 'ba-video-' + videoObject._stream.id.replace(/[{()}]/g, '');
 
       if (!canvas)
         canvas = document.createElement('canvas');
@@ -139,11 +142,11 @@ Scoped.define ("module:FilterSupport", [], function () {
     // apply captureStream and will return new stream
     filterCanvasControl: function (stream, framesPerSecond) {
       var fps = framesPerSecond || 25;
-      var selector = '.ba-video-' + stream.id;
+      var selector = '.ba-video-' + stream.id.replace(/[{()}]/g, '');
       var canvas = document.querySelector(selector);
       if (canvas) {
         stream = canvas.captureStream(fps);
-        canvas.className = 'ba-video-' + stream.id;
+        canvas.className = 'ba-video-' + stream.id.replace(/[{()}]/g, '');
       }
 
       return stream;
@@ -304,8 +307,16 @@ Scoped.define("module:StreamsFilter", [
       },
 
       applyFilteredStream: function(instance, fps) {
+        console.log(instance);
         instance._stream = FilterSupport.filterCanvasControl(instance._stream, fps);
-        instance._whammyRecorder._stream = instance._stream;
+
+        if(instance._whammyRecorder)
+          instance._whammyRecorder._stream = instance._stream;
+
+        else if (instance._recorder) {
+          instance._recorder._stream = instance._stream;
+        }
+
         return instance;
       }
     }
